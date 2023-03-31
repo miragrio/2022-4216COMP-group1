@@ -4,25 +4,20 @@ import pandas as pd
 file = pd.read_csv("CrimeDataSet.csv")
 
 def dan_1():
-    """Graph comparing gender rations"""
+    """Graph comparing gender ratios"""
     Male = 0
     Female = 0
     Other = 0
-    chosen_data1 = "Vict Sex"
+    search = {}
+    chosen_data = "Vict Sex"
 
-    x = 0
-    data = file[chosen_data1]
-    length = len(data)
+    for code in file[chosen_data]:
+        search[code] = search.get(code, 0)
+        search[code] += 1
 
-    get_amount = {}
-
-    for code in file[chosen_data1]:
-        get_amount[code] = get_amount.get(code, 0)
-        get_amount[code] += 1
-
-    Male = (get_amount["M"])
-    Female = (get_amount["F"])
-    Other = (get_amount["X"])
+    Male = (search["M"])
+    Female = (search["F"])
+    Other = (search["X"])
 
     print(f"Male: {Male}")
     print(f"Female: {Female}")
