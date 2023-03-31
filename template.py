@@ -72,13 +72,23 @@ def pat_1():
         print(f"{code}: {desc} -> ({amount} incidents)")
 
     # Extracting the top ten crimes.
-    most_common = file['Crm Cd'].value_counts().nlargest(10)
+    most_common = file['Crm Cd Desc'].value_counts().nlargest(10)
 
-    # Plotting the top ten crimes.
-    most_common.plot(kind='bar',color='red')
-    plt.xlabel('Crm Cd')
-    plt.ylabel('Number of incidents')
-    plt.title('Top 10 Crime Codes')
+    # Choosing font.
+    font1 = {'family':'serif','color':'blue','size':20}
+    font2 = {'family':'serif','color':'red','size':15}
+        
+    # Plotting the top ten crimes
+    most_common.plot(kind='bar',color='green')
+    plt.grid(visible=True, axis='y', linestyle='--')
+    plt.xticks(rotation=10)
+    spacing = 0.500
+    plt.xticks(fontsize=5)
+    plt.subplots_adjust(bottom=spacing)
+    plt.xlabel('Crime Description', fontdict=font2)
+    plt.ylabel('Number of incidents', fontdict=font2)
+    plt.title('Top 10 Crime Codes', fontdict=font1)
+    
     plt.show()
 
 # Graph Selection.
