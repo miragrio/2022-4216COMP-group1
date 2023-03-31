@@ -71,11 +71,43 @@ def pat_1():
     
     plt.show()
 
+def mat_1():
+    # Bar chart to represent locations with most activity
+
+    # Collecting the Data
+    collect = {} 
+    for i in file['Premis Cd']:
+        collect[i] = collect.get(i,0)
+        collect[i] += 1
+
+    # Combine Premis Code and Premis Description
+    PremisCD = {}
+    for i,j in zip(file['Premis Cd', file['Premis Desc']]):
+        PremisCD[i] = j 
+    
+    # Top 10 locations (Which location should you be more careful in?)
+    top = file['Premis Desc'].value_counts().nlargest(10)
+
+    # Design and Plot
+    titleFont = {"family":"sans-serif", "color":(0,125,125),"size":30}
+    descFont = {"family":"serif","color":"green","size":15}
+    top.plot(kind="bar", color="blue")
+    plt.grid(visible = True, axis = 'y', linestyle='-')
+    plt.xticks(rotation=20, fontsize=5)
+    plt.subplots_adjust(bottom=0.25)
+    plt.title("Top 10 Locations for Criminal Activity", fontdict=titleFont)
+    plt.xlabel("Location Description", fontdict=descFont)
+    plt.ylabel("Crime Amount", fontdict=descFont)
+
+    # Show the graph
+    plt.show()
+
 # Graph Selection.
 user_menu = {
     "1": dan_1,
     "2": pat_1,
-    "3": quit
+    "3": mat_1,
+    "4": quit
     }
 
 # Update when you upload your graph.
@@ -84,7 +116,8 @@ while True:
 Please select team member graph:
 1) Daniel
 2) Patrick
-3) Quit
+3) Matei
+4) Quit
 ''')
     user_choice = input("Selection: ")
 
