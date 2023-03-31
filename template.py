@@ -78,7 +78,7 @@ def pat_1():
     font1 = {'family':'serif','color':'blue','size':20}
     font2 = {'family':'serif','color':'red','size':15}
         
-    # Plotting the top ten crimes
+    # Plotting the top ten crimes.
     most_common.plot(kind='bar',color='green')
     plt.grid(visible=True, axis='y', linestyle='--')
     plt.xticks(rotation=10)
@@ -112,4 +112,3 @@ Please select team member graph:
         user_menu[user_choice]()
     else:
         ("You have entered an invalid choice.")
-menu()
