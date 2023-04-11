@@ -63,6 +63,29 @@ def pat_2():
         amount = get_amount.get(area_code,0)
         print(f"{area_code}: {area_name} -> ({amount} incidents of crime)")
 
+    # Gathering the MODE value.
+    data_area = ""
+    data_mode = 0
+    for area, count in get_amount.items():
+        if count > data_mode:
+            data_area = area
+            data_mode = count
+
+    desc1 =  get_amount.get(data_area)
+    print(f"The MODE is: {data_mode} with area code: {data_area}")
+
+    # Gathering the lowest value.
+    min_code = ""
+    min_count = float('inf')
+    for area,count in get_amount.items():
+        if count < min_count:
+            min_code = area
+            min_count = count
+            
+    desc2 = get_amount.get(min_code)
+    print(f"The lowest value is: {min_count} with area code: {min_code}")
+    
+
     # Taking the number of 'AREA NAME' instances, and gathering the top 5 and bottom 5 areas
     # by number of instances. Columns created with value_counts function.
     most_common = file['AREA NAME'].value_counts().nlargest(5).reset_index()
@@ -76,8 +99,8 @@ def pat_2():
     font1 = {'family':'serif','color':'blue','size':30}
     font2 = {'family':'serif','color':'black','size':20}
 
-    # Two figures to displaying safest and most dangerous regions.
-    fig, (left,right) = plt.subplots(1, 2)
+    # Three figures to displaying safest and most dangerous regions + additional comparison graph.
+    fig, (left,right,compare) = plt.subplots(1, 3)
 
     # Plotting the most dangerous areas in the left bar chart.
     left.bar(most_common['AREA NAME'], most_common['COUNT'],color='red')
@@ -87,6 +110,7 @@ def pat_2():
     left.set_title("Dangerous Regions", fontdict=font1)
     left.set_xlabel("Area Name",fontdict=font2)
     left.set_ylabel("Amount of Crime (ALL CRIME INCLUDED!)", fontdict=font2)
+    
 
     # Plotting the safest areas in the right bar chart.
     right.bar(least_common['AREA NAME'], least_common['COUNT'],color='green')
@@ -96,9 +120,23 @@ def pat_2():
     right.set_title("Safest Regions",fontdict=font1)
     right.set_xlabel("Area Name",fontdict=font2)
     right.set_ylabel("Amount of Crime (All CRIME INCLUDED!)",fontdict=font2)
+    
+    # Comparing the mode and lowest value by number of incidents.
+    compare.bar(data_area, data_mode, color='red', width=10.5, label='Mode')
+    compare.bar(min_code, min_count, color='green',width=10.5, label='Least')
+    compare.grid(visible=True,linestyle='--')
+    compare.set_facecolor('#E6E6FA')
+    compare.set_xlabel("AREA CODE", fontdict=font2)
+    compare.set_ylabel("Amount of Crime (All CRIME INCLUDED!)", fontdict=font2)
+    compare.set_xticks([data_area, min_code])
+    compare.set_title("Mode/Lowest Comparison", fontdict=font1)
+    spacing = 0.100
+    plt.subplots_adjust(bottom=spacing)
+    
+    compare.legend()
 
     # Adjusting the width between suplots and displaying them.
-    plt.subplots_adjust(wspace=0.5)
+    plt.subplots_adjust(wspace=0.3)
     plt.show()
 
 def dan_1():
