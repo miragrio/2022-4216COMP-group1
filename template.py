@@ -167,6 +167,37 @@ def dan_1():
     ax.bar(names, values)
     plt.show()
 
+def dan_2():
+    """Graph comparing status of the cases"""
+    Adult_Arrest = 0
+    Invest_Cont = 0
+    Adult_Other = 0
+    search = {}
+    chosen_data = "Status Desc"
+
+    for code in file[chosen_data]:
+        search[code] = search.get(code, 0)
+        search[code] += 1
+
+    Adult_Arrest = (search["Adult Arrest"])
+    Invest_Cont = (search["Invest Cont"])
+    Adult_Other = (search["Adult Other"])
+
+    print(f"Adult_Arrest: {Adult_Arrest}")
+    print(f"Invest_Cont: {Invest_Cont}")
+    print(f"Adult_Other: {Adult_Other}")
+    
+    names = ['Adult Arrest', 'Adult Other', 'Invest Cont']
+    values = [Adult_Arrest, Adult_Other, Invest_Cont]
+
+    font1 = {'family':'Arial','color':'black','size':30}
+
+    fig, ax = plt.subplots() 
+    ax.set_title("Case Status", fontdict=font1)
+    ax.bar(names, values, color='orange')
+    ax.set_facecolor('#AAA')
+    plt.show()
+
 
 def mat_1():
     # Bar chart to represent locations with most activity
@@ -204,8 +235,9 @@ user_menu = {
     "1": pat_1,
     "2": pat_2,
     "3": dan_1,
-    "4": mat_1,
-    "5": quit
+    "4": dan_2,
+    "5": mat_1,
+    "6": quit
     }
 
 # Update when you upload your graph.
@@ -215,8 +247,9 @@ Please select team member graph:
 1) Patrick - MOST COMMON CRIMES
 2) Patrick - CRIME IN LOS ANGELES AREAS
 3) Daniel - CRIME BY GENDER
-4) Matei - CRIME BY PREMISE
-5) Quit
+4) Daniel - CRIME BY STATUS
+5) Matei - CRIME BY PREMISE
+6) Quit
 ''')
     user_choice = input("Selection: ")
 
