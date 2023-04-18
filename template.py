@@ -230,6 +230,38 @@ def mat_1():
     # Show the graph
     plt.show()
 
+def leo_1():
+
+    """Graph comparing age ratios"""
+    children = 0 
+    teenager = 0
+    adults = 0
+    older_adults = 0
+    search = {}
+    chosen_data = "Vict Age"
+
+    for code in file[chosen_data]:
+        search[code] = search.get(code, 0)
+        search[code] += 1
+	
+    for age,count in search.items():
+        if 1 <= age < 16:
+            children+=1
+        if 16 <= age < 18: 
+            teenager+=1
+        if 18 <= age < 65:
+            adults+=1
+        if 65<= age:
+	        older_adults= older_adults+1 
+                
+    values = [children, teenager, adults, older_adults]
+    names = ['children','teenager', 'adults', 'older adults']
+
+    fig, ax = plt.subplots() 
+    ax.set_title("Age Ratio")
+    ax.bar(names, values)
+    plt.show()
+
 # Graph Selection.
 user_menu = {
     "1": pat_1,
@@ -237,7 +269,8 @@ user_menu = {
     "3": dan_1,
     "4": dan_2,
     "5": mat_1,
-    "6": quit
+    "6": leo_1,
+    "7": quit
     }
 
 # Update when you upload your graph.
@@ -249,7 +282,8 @@ Please select team member graph:
 3) Daniel - CRIME BY GENDER
 4) Daniel - CRIME BY STATUS
 5) Matei - CRIME BY PREMISE
-6) Quit
+6) Leo - CRIME BY VICT AGE 
+7) Quit
 ''')
     user_choice = input("Selection: ")
 
