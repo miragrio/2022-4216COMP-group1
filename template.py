@@ -29,7 +29,7 @@ def pat_1():
     font1 = {'family':'serif','color':'blue','size':20}
     font2 = {'family':'serif','color':'red','size':15}
         
-    # Plotting the top ten crimes.
+    # Plotting the top ten crimes
     most_common.plot(kind='bar',color='green')
     plt.grid(visible=True, axis='y', linestyle='--')
     plt.xticks(rotation=10)
@@ -298,6 +298,29 @@ def joe_1():
     ax.set_facecolor('#000')
     plt.show()
 
+def ellis_1():
+    """ Bar Chart Representing Weapon Usage In Los Angeles (2020-2023) """
+
+    # Extracting the top ten weapons.
+    common_w = file['Weapon Desc'].value_counts().nlargest(10)
+
+    # Choosing font.
+    font1 = {'family':'Arial','color':'red','size':20}
+    font2 = {'family':'Arial','color':'blue','size':15}
+        
+    # Plotting the top ten weapons.
+    common_w.plot(kind='bar',color='purple')
+    plt.grid(visible=True, axis='y', linestyle='--')
+    plt.xticks(rotation=10)
+    spacing = 0.500
+    plt.xticks(fontsize=8)
+    plt.subplots_adjust(bottom=spacing)
+    plt.xlabel('Weapon Used', fontdict=font2)
+    plt.ylabel('Number of incidents', fontdict=font2)
+    plt.title('Top 10 Weapons', fontdict=font1)
+    
+    plt.show()
+
 
 # Graph Selection.
 user_menu = {
@@ -307,7 +330,8 @@ user_menu = {
     "4": dan_2,
     "5": mat_1,
     "6": sam_1,
-    "7": quit
+    "7": ellis_1,
+    "8": quit
     }
 
 # Update when you upload your graph.
@@ -320,7 +344,8 @@ Please select team member graph:
 4) Daniel - CRIME BY STATUS
 5) Matei - CRIME BY PREMISE
 6) Sam - CRIME BY TIME OCCURRED
-7) Quit
+7) Ellis - MOST COMMON WEAPONS
+8) Quit
 ''')
     user_choice = input("Selection: ")
 
