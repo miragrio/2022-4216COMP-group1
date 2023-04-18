@@ -158,14 +158,16 @@ def dan_1():
     print(f"Male: {Male}")
     print(f"Female: {Female}")
     print(f"Other: {Other}")
-    
+
     names = ['Male', 'Female', 'Other']
     values = [Male, Female, Other]
 
-    fig, ax = plt.subplots() 
-    ax.set_title("Gender Ratio")
-    ax.bar(names, values)
-    plt.show()
+    spacing = [0.01,0.01,0.01]
+    colors = ["#EC6B56", "#FFC154", "#47B39C"]
+
+    plt.title("Gender Ratio")
+    plt.pie(values, labels = names, startangle = 90, explode = spacing, colors = colors)
+    plt.show() 
 
 def dan_2():
     """Graph comparing status of the cases"""
@@ -183,21 +185,21 @@ def dan_2():
     Invest_Cont = (search["Invest Cont"])
     Adult_Other = (search["Adult Other"])
 
-    print(f"Adult_Arrest: {Adult_Arrest}")
-    print(f"Invest_Cont: {Invest_Cont}")
-    print(f"Adult_Other: {Adult_Other}")
-    
+    print(f"Adult Arrest: {Adult_Arrest}")
+    print(f"Invest Cont: {Invest_Cont}")
+    print(f"Adult Other: {Adult_Other}")
+
     names = ['Adult Arrest', 'Adult Other', 'Invest Cont']
     values = [Adult_Arrest, Adult_Other, Invest_Cont]
 
-    font1 = {'family':'Arial','color':'black','size':30}
+    font1 = {'family':'Arial','color':'black','size':20}
 
-    fig, ax = plt.subplots() 
-    ax.set_title("Case Status", fontdict=font1)
-    ax.bar(names, values, color='orange')
-    ax.set_facecolor('#AAA')
-    plt.show()
+    spacing = [0.01,0.01,0.01]
+    colors = ["#FFC154", "#47B39C", "#EC6B56"]
 
+    plt.title("Case Status", fontdict=font1)
+    plt.pie(values, labels = names, startangle = 90, explode = spacing, colors = colors)
+    plt.show() 
 
 def mat_1():
     # Bar chart to represent locations with most activity
