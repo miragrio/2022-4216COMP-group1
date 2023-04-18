@@ -289,7 +289,7 @@ def joe_1():
         if date[0:2] == "12":
             december+=1
 
-    names = ['January', 'February', 'March', 'April', 'May', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
+    names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     values = [january, february, march, april, may, june, july, august, september, october, november, december]
 
     fig, ax = plt.subplots() 
