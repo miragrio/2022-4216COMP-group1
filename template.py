@@ -230,6 +230,19 @@ def mat_1():
     # Show the graph
     plt.show()
 
+def sam_1():
+    # Bar chat to represent most crimes throughout times of the day
+
+    # Defining times
+    time_1 = 0;
+    # Collecting the Data
+    data = {}
+    for i in file['TIME OCC']:
+        data[i] = data.get(i, 0)
+        data[i] += 1
+    print(data)
+
+
 # Graph Selection.
 user_menu = {
     "1": pat_1,
@@ -237,7 +250,8 @@ user_menu = {
     "3": dan_1,
     "4": dan_2,
     "5": mat_1,
-    "6": quit
+    "6": sam_1,
+    "7": quit
     }
 
 # Update when you upload your graph.
@@ -249,7 +263,8 @@ Please select team member graph:
 3) Daniel - CRIME BY GENDER
 4) Daniel - CRIME BY STATUS
 5) Matei - CRIME BY PREMISE
-6) Quit
+6) Sam - CRIME BY TIME OCCURRED
+7) Quit
 ''')
     user_choice = input("Selection: ")
 
