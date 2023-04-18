@@ -356,7 +356,8 @@ user_menu = {
     "6": sam_1,
     "7": ellis_1,
     "8": leo_1,
-    "9": quit 
+    "9": joe_1,
+    "10": quit 
     }
 
 # Update when you upload your graph.
@@ -371,7 +372,8 @@ Please select team member graph:
 6) Sam - CRIME BY TIME OCCURRED
 7) Ellis - MOST COMMON WEAPONS
 8) Leo - VICT AGE GROUP 
-9) Quit
+9) Joe - DATES COMMITTED
+10) Quit
 ''')
     user_choice = input("Selection: ")
 
