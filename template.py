@@ -233,15 +233,50 @@ def mat_1():
 def sam_1():
     # Bar chat to represent most crimes throughout times of the day
 
-    # Defining times
-    time_1 = 0;
     # Collecting the Data
+    morning = []
+    afternoon = []
+    evening = []
+    night = []
     data = {}
+    morningcount = {}
+    afternooncount = {}
+    eveningcount = {}
+    nightcount = {}
     for i in file['TIME OCC']:
         data[i] = data.get(i, 0)
         data[i] += 1
-    print(data)
+        if data[i] < 1201 and data[i] > 599:
+            morning.append(data[i])
+        if data[i] < 1801 and data[i] > 1200:
+            afternoon.append(data[i])
+        if data[i] < 2400 and data[i] > 1800:
+            evening.append(data[i])
+        if data[i] < 601 and data[i] > 0:
+            night.append(data[i])
+    for i in morning:
+        morningcount[i] = morningcount.get(i,0)
+        morningcount[i] += 1
+    for i in afternoon:
+        afternooncount[i] = afternooncount.get(i,0)
+        afternooncount[i] += 1
+    for i in evening:
+        eveningcount[i] = eveningcount.get(i,0)
+        eveningcount[i] += 1
+    for i in night:
+        nightcount[i] = nightcount.get(i,0)
+        nightcount[i] += 1
+    # Plotting the top ten crimes.
+    names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime']
+    values = [morningcount, afternooncount, eveningcount, nightcount]
 
+    font1 = {'family':'Arial','color':'black','size':30}
+
+    fig, ax = plt.subplots() 
+    ax.set_title("Crimes at times during the day", fontdict=font1)
+    ax.bar(names, values, color='blue')
+    ax.set_facecolor('#AAA')
+    plt.show()
 
 # Graph Selection.
 user_menu = {
