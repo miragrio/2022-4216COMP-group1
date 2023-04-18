@@ -229,6 +229,41 @@ def mat_1():
 
     # Show the graph
     plt.show()
+def leo_1():
+        
+    children = 0
+    teenager = 0
+    adult = 0
+    older_adult = 0
+    search = {}
+    chosen_data = "Vict Age"
+
+    for code in file[chosen_data]:
+        search[code] = search.get(code, 0)
+        search[code] += 1
+    print(search)
+
+    for age,count in search.items():
+        print(age)
+        if 0<=age<16:
+            children+=1
+        if 16<=age<18:
+            teenager+=1
+        if 18<=age<65:
+            adult+=1
+        if 65<age:
+            older_adult+=1
+        
+        print(f"C:{children},    T:{teenager},     A:{adult},      OA:{older_adult}")
+
+    names = ['Children', 'Teenager', 'Adult', 'Older Adult']
+    values = [children, teenager, adult, older_adult]
+
+    fig, ax = plt.subplots() 
+    ax.set_title("Vict Age Group")
+    ax.bar(names, values, color='red')
+    ax.set_facecolor('#000')
+    plt.show()
 
 def sam_1():
     # Bar chat to represent most crimes throughout times of the day
