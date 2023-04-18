@@ -239,10 +239,6 @@ def sam_1():
     evening = []
     night = []
     data = {}
-    morningcount = {}
-    afternooncount = {}
-    eveningcount = {}
-    nightcount = {}
     for i in file['TIME OCC']:
         data[i] = data.get(i, 0)
         data[i] += 1
@@ -254,28 +250,20 @@ def sam_1():
             evening.append(data[i])
         if data[i] < 601 and data[i] > 0:
             night.append(data[i])
-    for i in morning:
-        morningcount[i] = morningcount.get(i,0)
-        morningcount[i] += 1
-    for i in afternoon:
-        afternooncount[i] = afternooncount.get(i,0)
-        afternooncount[i] += 1
-    for i in evening:
-        eveningcount[i] = eveningcount.get(i,0)
-        eveningcount[i] += 1
-    for i in night:
-        nightcount[i] = nightcount.get(i,0)
-        nightcount[i] += 1
+    morning = len(morning)
+    afternoon = len(afternoon)
+    evening = len(evening)
+    night = len(night)
     # Plotting the top ten crimes.
     names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime']
-    values = [morningcount, afternooncount, eveningcount, nightcount]
+    values = [morning, afternoon, evening, night]
 
-    font1 = {'family':'Arial','color':'black','size':30}
+    font1 = {'family':'Arial','color':'black','size':20}
 
     fig, ax = plt.subplots() 
-    ax.set_title("Crimes at times during the day", fontdict=font1)
-    ax.bar(names, values, color='blue')
-    ax.set_facecolor('#AAA')
+    ax.set_title("What times of the day were all crimes committed?", fontdict=font1)
+    ax.bar(names, values, color='orangered')
+    ax.set_facecolor('#cce7e8')
     plt.show()
 def joe_1():
     """Graph comparing dates of crimes committed"""
