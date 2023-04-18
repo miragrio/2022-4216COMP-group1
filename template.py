@@ -29,7 +29,7 @@ def pat_1():
     font1 = {'family':'serif','color':'blue','size':20}
     font2 = {'family':'serif','color':'red','size':15}
         
-    # Plotting the top ten crimes.
+    # Plotting the top ten crimes
     most_common.plot(kind='bar',color='green')
     plt.grid(visible=True, axis='y', linestyle='--')
     plt.xticks(rotation=10)
@@ -230,37 +230,133 @@ def mat_1():
     # Show the graph
     plt.show()
 
-def leo_1():
+def sam_1():
+    # Bar chat to represent most crimes throughout times of the day
 
-    """Graph comparing age ratios"""
-    children = 0 
-    teenager = 0
-    adults = 0
-    older_adults = 0
+    # Collecting the Data
+    morning = []
+    afternoon = []
+    evening = []
+    night = []
+    data = {}
+    morningcount = {}
+    afternooncount = {}
+    eveningcount = {}
+    nightcount = {}
+    for i in file['TIME OCC']:
+        data[i] = data.get(i, 0)
+        data[i] += 1
+        if data[i] < 1201 and data[i] > 599:
+            morning.append(data[i])
+        if data[i] < 1801 and data[i] > 1200:
+            afternoon.append(data[i])
+        if data[i] < 2400 and data[i] > 1800:
+            evening.append(data[i])
+        if data[i] < 601 and data[i] > 0:
+            night.append(data[i])
+    for i in morning:
+        morningcount[i] = morningcount.get(i,0)
+        morningcount[i] += 1
+    for i in afternoon:
+        afternooncount[i] = afternooncount.get(i,0)
+        afternooncount[i] += 1
+    for i in evening:
+        eveningcount[i] = eveningcount.get(i,0)
+        eveningcount[i] += 1
+    for i in night:
+        nightcount[i] = nightcount.get(i,0)
+        nightcount[i] += 1
+    # Plotting the top ten crimes.
+    names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime']
+    values = [morningcount, afternooncount, eveningcount, nightcount]
+
+    font1 = {'family':'Arial','color':'black','size':30}
+
+    fig, ax = plt.subplots() 
+    ax.set_title("Crimes at times during the day", fontdict=font1)
+    ax.bar(names, values, color='blue')
+    ax.set_facecolor('#AAA')
+    plt.show()
+    
+def joe_1():
+    """Graph comparing dates of crimes committed"""
+    january = 0
+    february = 0
+    march = 0
+    april = 0
+    may = 0
+    june = 0
+    july = 0
+    august = 0
+    september = 0
+    october = 0
+    november = 0
+    december = 0
     search = {}
-    chosen_data = "Vict Age"
+    chosen_data = "Date Rptd"
 
     for code in file[chosen_data]:
         search[code] = search.get(code, 0)
         search[code] += 1
-	
-    for age,count in search.items():
-        if 1 <= age < 16:
-            children+=1
-        if 16 <= age < 18: 
-            teenager+=1
-        if 18 <= age < 65:
-            adults+=1
-        if 65<= age:
-	        older_adults= older_adults+1 
-                
-    values = [children, teenager, adults, older_adults]
-    names = ['children','teenager', 'adults', 'older adults']
+
+    for date,count in search.items():
+        if date[0:2] == "01":
+            january+=1
+        if date[0:2] == "02":
+            february+=1
+        if date[0:2] == "03":
+            march+=1
+        if date[0:2] == "04":
+            april+=1
+        if date[0:2] == "05":
+            may+=1
+        if date[0:2] == "06":
+            june+=1
+        if date[0:2] == "07":
+            july+=1
+        if date[0:2] == "08":
+            august+=1
+        if date[0:2] == "09":
+            september+=1
+        if date[0:2] == "10":
+            october+=1
+        if date[0:2] == "11":
+            november+=1
+        if date[0:2] == "12":
+            december+=1
+
+    names = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    values = [january, february, march, april, may, june, july, august, september, october, november, december]
 
     fig, ax = plt.subplots() 
-    ax.set_title("Age Ratio")
-    ax.bar(names, values)
+    ax.set_title("Crimes Committed in each month")
+    ax.bar(names, values, color='red')
+    ax.set_facecolor('#000')
     plt.show()
+
+def ellis_1():
+    """ Bar Chart Representing Weapon Usage In Los Angeles (2020-2023) """
+
+    # Extracting the top ten weapons.
+    common_w = file['Weapon Desc'].value_counts().nlargest(10)
+
+    # Choosing font.
+    font1 = {'family':'Arial','color':'red','size':20}
+    font2 = {'family':'Arial','color':'blue','size':15}
+        
+    # Plotting the top ten weapons.
+    common_w.plot(kind='bar',color='purple')
+    plt.grid(visible=True, axis='y', linestyle='--')
+    plt.xticks(rotation=10)
+    spacing = 0.500
+    plt.xticks(fontsize=8)
+    plt.subplots_adjust(bottom=spacing)
+    plt.xlabel('Weapon Used', fontdict=font2)
+    plt.ylabel('Number of incidents', fontdict=font2)
+    plt.title('Top 10 Weapons', fontdict=font1)
+    
+    plt.show()
+
 
 # Graph Selection.
 user_menu = {
@@ -269,8 +365,10 @@ user_menu = {
     "3": dan_1,
     "4": dan_2,
     "5": mat_1,
-    "6": leo_1,
-    "7": quit
+    "6": sam_1,
+    "7": ellis_1,
+    "8": leo_1,
+    "9": quit 
     }
 
 # Update when you upload your graph.
@@ -282,8 +380,10 @@ Please select team member graph:
 3) Daniel - CRIME BY GENDER
 4) Daniel - CRIME BY STATUS
 5) Matei - CRIME BY PREMISE
-6) Leo - CRIME BY VICT AGE 
-7) Quit
+6) Sam - CRIME BY TIME OCCURRED
+7) Ellis - MOST COMMON WEAPONS
+8) Leo - VICT AGE GROUP 
+9) Quit
 ''')
     user_choice = input("Selection: ")
 
