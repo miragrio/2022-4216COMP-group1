@@ -244,24 +244,21 @@ def leo_1():
     for code in file[chosen_data]:
         search[code] = search.get(code, 0)
         search[code] += 1
-    print(search)
-
-    for age,count in search.items():
-        print(age)
-        if 0<=age<16:
+        if search[code] < 16 and search[code] > 0:
             children+=1
-        if 16<=age<18:
+        elif search[code] < 17 and search[code] < 19:
             teenager+=1
-        if 18<=age<65:
+        elif search[code] >=18 and search[code] < 65:
             adult+=1
-        if 65<age:
+        elif search[code] > 65 and search[code] < 120:
             older_adult+=1
-        
-        print(f"C:{children},    T:{teenager},     A:{adult},      OA:{older_adult}")
-
+            
     names = ['Children', 'Teenager', 'Adult', 'Older Adult']
     values = [children, teenager, adult, older_adult]
-
+    print(children)
+    print(teenager)
+    print(adult)
+    print(older_adult)
     fig, ax = plt.subplots() 
     ax.set_title("Vict Age Group")
     ax.bar(names, values, color='red')
