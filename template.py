@@ -204,22 +204,23 @@ def dan_2():
 def mat_1():
     # Bar chart to represent locations with most activity
 
+    # Combine Premis Code and Premis Description
+    PremisCdDesc = {}
+    for code, desc in zip(file['Premis Cd'], file['Premis Desc']):
+        PremisCdDesc[code] = desc
+
+
     # Collecting the Data
     collect = {} 
-    for i in file['Premis Cd']:
-        collect[i] = collect.get(i,0)
-        collect[i] += 1
+    for code in file['Premis Cd']:
+        collect[code] = collect.get(code,0)
+        collect[code] += 1
 
-    # Combine Premis Code and Premis Description
-    PremisCD = {}
-    for i,j in zip(file['Premis Cd', file['Premis Desc']]):
-        PremisCD[i] = j 
-    
     # Top 10 locations (Which location should you be more careful in?)
     top = file['Premis Desc'].value_counts().nlargest(10)
 
     # Design and Plot
-    titleFont = {"family":"sans-serif", "color":(0,125,125),"size":30}
+    titleFont = {"family":"sans-serif", "color":"black","size":30}
     descFont = {"family":"serif","color":"green","size":15}
     top.plot(kind="bar", color="blue")
     plt.grid(visible = True, axis = 'y', linestyle='-')
@@ -228,9 +229,9 @@ def mat_1():
     plt.title("Top 10 Locations for Criminal Activity", fontdict=titleFont)
     plt.xlabel("Location Description", fontdict=descFont)
     plt.ylabel("Crime Amount", fontdict=descFont)
-
-    # Show the graph
     plt.show()
+
+
 def leo_1():
         
     children = 0
