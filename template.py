@@ -260,8 +260,9 @@ def leo_1():
     print(adult)
     print(older_adult)
     fig, ax = plt.subplots() 
+    ax.grid(visible=True,linestyle='--')
     ax.set_title("Vict Age Group")
-    ax.bar(names, values, color='red')
+    ax.bar(names, values, color='blue')
     ax.set_facecolor('#000')
     plt.show()
 
