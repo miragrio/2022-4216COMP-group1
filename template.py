@@ -257,10 +257,10 @@ def leo_1():
     names = ['Children', 'Teenager', 'Adult', 'Older Adult']
     values = [children, teenager, adult, older_adult]
 
-    print(children)
-    print(teenager)
-    print(adult)
-    print(older_adult)
+    print("Children:", children)
+    print("Teenagers:", teenager)
+    print("Adults:", adult)
+    print("Older People:", older_adult)
 
     # Rendering chart
     fig, ax = plt.subplots() 
