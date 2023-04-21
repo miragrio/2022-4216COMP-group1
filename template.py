@@ -278,6 +278,7 @@ def sam_1():
     afternoon = []
     evening = []
     night = []
+    total = []
     data = {}
     for i in file['TIME OCC']:
         data[i] = data.get(i, 0)
@@ -294,9 +295,10 @@ def sam_1():
     afternoon = len(afternoon)
     evening = len(evening)
     night = len(night)
+    total = morning + afternoon + evening + night
     # Plotting the times of crime
-    names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime']
-    values = [morning, afternoon, evening, night]
+    names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime', 'Total Crime']
+    values = [morning, afternoon, evening, night, total]
 
     font1 = {'family':'Arial','color':'black','size':20}
 
