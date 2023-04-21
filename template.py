@@ -233,14 +233,14 @@ def mat_1():
 
 
 def leo_1():
-        
+    # Bar chat to represent most crime victims
     children = 0
     teenager = 0
     adult = 0
     older_adult = 0
     search = {}
     chosen_data = "Vict Age"
-
+    # Finding the data
     for code in file[chosen_data]:
         search[code] = search.get(code, 0)
         search[code] += 1
@@ -252,15 +252,19 @@ def leo_1():
             adult+=1
         elif search[code] > 65 and search[code] < 120:
             older_adult+=1
-            
+    
+    # Plotting the age groups
     names = ['Children', 'Teenager', 'Adult', 'Older Adult']
     values = [children, teenager, adult, older_adult]
+
     print(children)
     print(teenager)
     print(adult)
     print(older_adult)
+
+    # Rendering chart
     fig, ax = plt.subplots() 
-    ax.grid(visible=True,linestyle='--')
+    ax.grid(visible=True,axis='y',linestyle='--')
     ax.set_title("Vict Age Group")
     ax.bar(names, values, color='blue')
     ax.set_facecolor('#000')
@@ -290,13 +294,15 @@ def sam_1():
     afternoon = len(afternoon)
     evening = len(evening)
     night = len(night)
-    # Plotting the top ten crimes.
+    # Plotting the times of crime
     names = ['Morning Crime', 'Afternoon Crime', 'Evening Crime', 'Night Crime']
     values = [morning, afternoon, evening, night]
 
     font1 = {'family':'Arial','color':'black','size':20}
 
+    # Rendering chart
     fig, ax = plt.subplots() 
+    ax.grid(visible=True,axis='y',linestyle='--')
     ax.set_title("What times of the day were all crimes committed?", fontdict=font1)
     ax.bar(names, values, color='orangered')
     ax.set_facecolor('#cce7e8')
